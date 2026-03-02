@@ -536,9 +536,10 @@ dark:border-primary/10 py-4" id="categoryFilters" >
                     <p id="modalPrice"
                        class="text-primary text-xl font-semibold mb-8"></p>
 
-                    <button class="bg-primary text-white px-8 py-3 rounded-full uppercase text-xs">
-                        Add to Cart
-                    </button>
+                       <button id="whatsappOrder"
+                       class="bg-primary text-white px-8 py-3 rounded-full uppercase text-xs hover:bg-primary/90 transition">
+                       Order via WhatsApp
+                   </button>
 
                 </div>
             </div>
@@ -546,6 +547,7 @@ dark:border-primary/10 py-4" id="categoryFilters" >
     </div>
     <!-- POPUP MODAL END -->
     <script>
+        let selectedProduct = null;
         const overlay = document.getElementById('productOverlay');
         const closeBtn = document.getElementById('closeModal');
         const carousel = document.getElementById('modalCarousel');
@@ -556,44 +558,41 @@ dark:border-primary/10 py-4" id="categoryFilters" >
         let modalTotalSlides = 0;
         
         function openModal(prod) {
-        
-          // Fill product details
-          document.getElementById('modalCategory').textContent = prod.category || "";
-          document.getElementById('modalTitle').textContent = prod.name || "";
-          document.getElementById('modalDescription').textContent = prod.description || "";
-          document.getElementById('modalPrice').textContent = "$" + (prod.price || 0);
-        
-          // Get images
-          const images = (prod.images && prod.images.length)
-              ? prod.images
-              : [prod.image];
-        
-          modalTotalSlides = images.length;
-        
-          // Clear old slides
-          carousel.innerHTML = "";
-        
-          // Create slides
-          images.forEach(img => {
-            const slide = document.createElement("div");
-            slide.className = "min-w-full h-full bg-cover bg-center";
-            slide.style.backgroundImage = `url('${img}')`;
-            carousel.appendChild(slide);
-          });
-        
-          modalIndex = 0;
-          updateModalSlide();
-        
-          // Hide arrows if only 1 image
-          if (modalTotalSlides <= 1) {
-            modalPrevBtn.style.display = "none";
-            modalNextBtn.style.display = "none";
-          } else {
-            modalPrevBtn.style.display = "flex";
-            modalNextBtn.style.display = "flex";
-          }
-        
-          overlay.classList.remove("hidden");
+
+selectedProduct = prod; // ✅ store current product
+
+document.getElementById('modalCategory').textContent = prod.category || "";
+document.getElementById('modalTitle').textContent = prod.name || "";
+document.getElementById('modalDescription').textContent = prod.description || "";
+document.getElementById('modalPrice').textContent = "$" + (prod.price || 0);
+
+const images = (prod.images && prod.images.length)
+    ? prod.images
+    : [prod.image];
+
+modalTotalSlides = images.length;
+
+carousel.innerHTML = "";
+
+images.forEach(img => {
+  const slide = document.createElement("div");
+  slide.className = "min-w-full h-full bg-cover bg-center";
+  slide.style.backgroundImage = `url('${img}')`;
+  carousel.appendChild(slide);
+});
+
+modalIndex = 0;
+updateModalSlide();
+
+if (modalTotalSlides <= 1) {
+  modalPrevBtn.style.display = "none";
+  modalNextBtn.style.display = "none";
+} else {
+  modalPrevBtn.style.display = "flex";
+  modalNextBtn.style.display = "flex";
+}
+
+overlay.classList.remove("hidden");
 overlay.classList.add("flex");
 
 setTimeout(() => {
@@ -601,8 +600,32 @@ setTimeout(() => {
 }, 10);
 
 document.body.classList.add("overflow-hidden");
-        }
-        
+}
+const whatsappBtn = document.getElementById("whatsappOrder");
+
+whatsappBtn.onclick = function () {
+
+  if (!selectedProduct) return;
+
+  const message = `
+Hello COCO DEMER,
+
+I would like to order:
+
+• Product: ${selectedProduct.name}
+• Category: ${selectedProduct.category}
+• Price: $${selectedProduct.price}
+
+Please confirm availability.
+
+Thank you.
+`;
+
+  const phoneNumber = "9895522449"; // your WhatsApp Business number
+  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+  window.open(url, "_blank");
+};
         function updateModalSlide() {
           carousel.style.transform = `translateX(-${modalIndex * 100}%)`;
         }
