@@ -253,11 +253,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let total = 0;
 
     cart.forEach(item => {
-      message += `• ${item.name} (${item.size}) x${item.quantity} - $${item.price}\n`;
+      message += `• ${item.name} (${item.size}) x${item.quantity} - Rs: ${item.price}\n`;
       total += item.price * item.quantity;
     });
 
-    message += `\nTotal: $${total}\n\nPlease confirm availability.\nThank you.`;
+    message += `\nTotal: Rs: ${total}\n\nPlease confirm availability.\nThank you.`;
 
     const phoneNumber = "9895522449";
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
