@@ -268,28 +268,3 @@ window.buyCartViaWhatsApp = function(){
 updateCartUI();
 
 });
-
-
-function openCart(){
-  cartDrawer.classList.remove("translate-x-full");
-
-  cartOverlay.classList.remove("opacity-0","invisible");
-  cartOverlay.classList.add("opacity-100");
-
-  document.body.classList.add("overflow-hidden");
-}
-
-function closeCart(){
-  cartDrawer.classList.add("translate-x-full");
-
-  cartOverlay.classList.add("opacity-0");
-  setTimeout(()=>{
-    cartOverlay.classList.add("invisible");
-  },300);
-
-  document.body.classList.remove("overflow-hidden");
-}
-
-cartIcon.addEventListener("click", openCart);
-closeCartBtn.addEventListener("click", closeCart);
-cartOverlay.addEventListener("click", closeCart);

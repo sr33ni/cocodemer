@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="styles.css">
-<script src="script.js" async></script>
+<script src="script.js" defer></script>
 
 <script id="tailwind-config">
         tailwind.config = {
@@ -470,17 +470,6 @@ dark:border-primary/10 py-4" id="categoryFilters" >
       class="bg-deep-forest text-white py-4 rounded-full uppercase text-xs tracking-[0.2em] hover:bg-black transition-all duration-300 shadow-md hover:shadow-xl">
       Add To Cart
     </button>
-
-    <!-- <button id="buyNow"
-      class="bg-primary text-white py-4 rounded-full uppercase text-xs tracking-[0.2em] hover:bg-primary/90 transition-all duration-300 shadow-md hover:shadow-xl">
-      Buy Now
-    </button>
-
-    <button onclick="buyCartViaWhatsApp()"
-      class="border border-primary text-primary py-3 rounded-full uppercase text-xs tracking-[0.2em] hover:bg-primary hover:text-white transition-all duration-300">
-      Buy Full Cart
-    </button> -->
-
   </div>
 
 </div>
@@ -510,23 +499,6 @@ document.addEventListener("click", function(e) {
 
 
         </script>
-
-        <script>
-
-const cartDrawer = document.getElementById("cartDrawer");
-
-document.getElementById("cartIcon").onclick = function () {
-  cartDrawer.classList.remove("translate-x-full");
-};
-
-document.getElementById("closeCart").onclick = function () {
-  cartDrawer.classList.add("translate-x-full");
-};
-document.addEventListener("DOMContentLoaded", function () {
-  updateCartUI();
-});
-        </script>
-
 </footer>
 </div>
 <a class="fixed bottom-10 right-10 bg-[#25D366] text-white size-14 rounded-full flex items-center justify-center shadow-2xl hover:bg-[#25D366]/90 transition-all z-[100] group" href="https://wa.me/9895522449?text=Hello%20there%2C%20I%20have%20a%20question" target="_blank">
